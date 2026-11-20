@@ -1,0 +1,48 @@
+name: Publish project archive
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Prepare public files
+        run: |
+          mkdir _site
+          cp index.html style.css archive.js sample.js _site/
+      - name: Refresh from Google Drive
+        env:
+          GOOGLE_DRIVE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT }}
+        run: |
+          if [ -z "$GOOGLE_DRIVE_SERVICE_ACCOUNT" ]; then
+            echo '::notice::Using public sample data. Configure GOOGLE_DRIVE_SERVICE_ACCOUNT to enable synchronization.'
+            exit 0
+          fi
+          python3 -m pip install 'openpyxl>=3.1,<4' 'google-auth[requests]>=2,<3'
+          python3 scripts/sync_archive.py --output _site/projects.json
+          rm _site/sample.js
+          sed -i '/src="sample.js"/d' _site/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - uses: actions/deploy-pages@v4
+        id: deployment
