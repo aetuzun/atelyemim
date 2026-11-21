@@ -34,7 +34,7 @@ jobs:
           GOOGLE_DRIVE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT }}
         run: |
           if [ -z "$GOOGLE_DRIVE_SERVICE_ACCOUNT" ]; then
-            echo '::notice::Using public sample data. Configure GOOGLE_DRIVE_SERVICE_ACCOUNT to enable synchronization.'
+            echo '::notice::Using the archive review dataset. Configure GOOGLE_DRIVE_SERVICE_ACCOUNT to enable synchronization.'
             exit 0
           fi
           python3 -m pip install 'openpyxl>=3.1,<4' 'google-auth[requests]>=2,<3'

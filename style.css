@@ -1,37 +1,51 @@
-:root{color-scheme:light;--ink:#22221e;--muted:#5b5a50;--paper:#f6f5f0;--line:#ceccc2;--accent:#a43c2d}
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.45 Arial,sans-serif}
-a{color:inherit;text-underline-offset:.2em}
-.masthead,main,footer{width:min(1280px,calc(100% - 7vw));margin:auto}
-.masthead,footer{display:flex;justify-content:space-between;gap:1rem;padding:1.25rem 0;border-bottom:1px solid var(--ink)}
-.masthead a{font-weight:700;text-decoration:none}.masthead a span{font-weight:400}
-.masthead>span,footer{color:var(--muted)}
-.intro{display:grid;grid-template-columns:1fr 1.15fr;align-items:end;gap:2rem;margin:3rem 0 3.5rem}
-h1{font-size:clamp(4rem,10vw,9rem);line-height:.85;letter-spacing:-.085em;margin:0 0 .22em}h1 span{color:var(--accent)}
-figure{margin:0}figure img,.card img{display:block;width:100%;object-fit:cover;background:#e3e0d5}figure img{aspect-ratio:2/1}figcaption{margin-top:.45rem;color:var(--muted)}
-.controls{border-top:1px solid var(--ink);padding-top:1rem;display:grid;grid-template-columns:2fr repeat(3,1fr);gap:1rem}
-label{display:grid;gap:.3rem;color:var(--muted);font-size:.9rem}
-input,select,button{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:0;padding:.65rem;min-width:0}
-input,select{font-size:1rem;width:100%}button{cursor:pointer}button[aria-pressed=true]{background:var(--ink);color:white;border-color:var(--ink)}
-.viewbar{display:flex;justify-content:space-between;align-items:center;margin:1rem 0 .6rem}.viewbar p{color:var(--muted)}
-.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:760px;text-align:left}th,td{padding:.85rem .85rem .85rem 0;border-bottom:1px solid var(--line)}th{font-size:.875rem;color:var(--muted);font-weight:500}td:first-child,td:nth-child(3){white-space:nowrap}td:nth-child(2){font-weight:700}.code{font: .875rem ui-monospace,monospace;color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}.card img{aspect-ratio:4/3}.card h2{font-size:1.2rem;margin:.55rem 0 .2rem}.card p{color:var(--muted);margin:.2rem 0}
-footer{margin-top:4rem;border-top:1px solid var(--ink);border-bottom:0}
-@media(max-width:700px){.intro{grid-template-columns:1fr;gap:1rem;margin:2rem 0}.controls{grid-template-columns:1fr 1fr}.controls label:first-child{grid-column:span 2}.cards{grid-template-columns:1fr 1fr}figure img{aspect-ratio:16/9}}
-@media(max-width:450px){.cards{grid-template-columns:1fr}}
-
-/* Archive index */
-:root { --paper:#faf9f6; --ink:#22231f; --line:#d8d7d0; }
-.masthead,main,footer { width:min(1480px,calc(100% - 7vw)); }
-.masthead { position:sticky; top:0; z-index:1; background:var(--paper); }
-h1 { font-size:clamp(2.85rem,7vw,6rem); line-height:1; letter-spacing:-.065em; margin:2.4rem 0 1.4rem; }
-.controls { gap:.75rem; }
-th,td { padding:.55rem .85rem .55rem 0; }
-tbody tr:hover { background:#efeee8; }
-.cards { grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.8rem .85rem; }
-.card img { aspect-ratio:3/2; }
-.card h2 { font-size:1rem; }
-.card p, .viewbar p { font-size:.9rem; }
-@media(max-width:900px) { .cards { grid-template-columns:repeat(3,minmax(0,1fr)); } }
-@media(max-width:700px) { .cards { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media(max-width:390px) { .cards { grid-template-columns:1fr; } }
+:root {
+  color-scheme: light;
+  --ink: #181818;
+  --muted: #555;
+  --line: #d7d7d7;
+  --gutter: clamp(1rem, 3vw, 2.5rem);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; color: var(--ink); font: 15px/1.4 Arial, Helvetica, sans-serif; }
+button, input, select { font: inherit; color: inherit; }
+button { background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+button:hover, .brand:hover { text-decoration: underline; text-underline-offset: .2em; }
+:focus-visible { outline: 2px solid; outline-offset: 2px; }
+.masthead { border-bottom: 1px solid var(--ink); padding: .85rem var(--gutter); display: flex; justify-content: space-between; align-items: center; gap: .6rem; position: sticky; top: 0; background: white; z-index: 1; }
+.brand { color: inherit; text-decoration: none; font-weight: 700; }
+.view-switch { display: flex; gap: .5rem; }
+.view-switch button { padding: .2rem .45rem; }
+.view-switch [aria-pressed="true"] { background: var(--ink); color: white; }
+main { padding: 0 var(--gutter) 2rem; }
+h1 { font-size: 1.2rem; margin: 1.1rem 0 .8rem; }
+.controls { display: flex; align-items: end; gap: .75rem; flex-wrap: wrap; }
+.controls label { display: grid; gap: .2rem; font-size: .875rem; }
+.controls input, .controls select { background: white; border: 1px solid var(--line); border-radius: 0; min-height: 2rem; padding: .2rem .5rem; }
+.search { margin-left: auto; }
+#count { color: var(--muted); margin: .7rem 0 .4rem; font-size: .875rem; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 820px; text-align: left; }
+th, td { border-bottom: 1px solid var(--line); padding: .32rem .65rem .32rem .2rem; vertical-align: top; }
+th { border-top: 1px solid var(--ink); border-bottom-color: var(--ink); white-space: nowrap; }
+th:nth-child(3) { width: 30%; }
+td:nth-child(1), td:nth-child(2) { white-space: nowrap; }
+td:nth-child(1), td:nth-child(2), td:nth-child(7) { font-variant-numeric: tabular-nums; }
+th[aria-sort="ascending"] button::after { content: " ↑"; }
+th[aria-sort="descending"] button::after { content: " ↓"; }
+.project-title { font-weight: 700; }
+tbody tr:not(.detail-row):hover, .detail-row { background: #f3f3f3; }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: .2rem 1rem; margin: .55rem 0; }
+dt { color: var(--muted); }
+dd { margin: 0; }
+dd img { display: block; max-width: min(100%, 420px); max-height: 280px; object-fit: contain; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(215px, 100%), 1fr)); gap: 1.3rem .9rem; }
+.card img { display: block; width: 100%; aspect-ratio: 3/2; object-fit: cover; margin-bottom: .4rem; }
+.card strong, .card span { display: block; }
+.card span { color: var(--muted); }
+dialog { border: 1px solid; width: min(92vw, 540px); }
+dialog form { text-align: right; }
+dialog form button { text-decoration: underline; }
+@media (max-width: 580px) {
+  .search { margin-left: 0; width: 100%; }
+  .controls select { max-width: 40vw; }
+}

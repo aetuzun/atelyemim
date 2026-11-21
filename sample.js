@@ -1,14 +1,346 @@
 const site = 'https://www.atelyemimmimarlik.com/';
-const sampleProjects = [
-  ['AMM-00002', 'AT Evi ve Eki', '1986, 2013', 'Konut', 'Çukurova, Adana', '', 380, 'at', '2015/11/tan02.jpg'],
-  ['AMM-00003', 'Ziraat Bankası Röleve Restorasyonu', '1986', 'Ticari', 'Seyhan, Adana', 'Ziraat Bankası', null, 'ziraat-bankasi-roleve-restorasyonu', '2015/11/ziraaat-görünüş-1.jpg'],
-  ['AMM-00004', 'Turkuaz Evleri', '', 'Konut', 'Yenişehir, Mersin', '', null, 'turkuaz', '2015/11/tu_02.jpg'],
-  ['AMM-00005', 'Akademi Konsept', '2015', 'Konut', 'Mersin', '', null, 'akademi-konsept', '2016/01/eaka_2.jpg'],
-  ['AMM-00006', 'Yıldızkent Konutları', '', 'Konut', 'Tarsus, Mersin', '', null, 'yildizkent-konutlari', '2016/01/yild_06.jpg'],
-  ['AMM-00007', 'Yağlıcı Plaza', '', 'Ticari', 'Seyhan, Adana', '', null, 'yaglici-plaza', '2015/11/Yağlıcı-plaza-5.jpg'],
-].map(([id, title, years, type, location, client, area, slug, photo]) => ({
+const picturedProjects = [
+  ['AMM-00002', 'AT Evi ve Eki', '1986, 2013', 'Konut', 'Çukurova, Adana', '', 380, '2015/11/tan02.jpg'],
+  ['AMM-00003', 'Ziraat Bankası Röleve Restorasyonu', '1986', 'Ticari', 'Seyhan, Adana', 'Ziraat Bankası', null, '2015/11/ziraaat-görünüş-1.jpg'],
+  ['AMM-00004', 'Turkuaz Evleri', '', 'Konut', 'Yenişehir, Mersin', '', null, '2015/11/tu_02.jpg'],
+  ['AMM-00005', 'Akademi Konsept', '2015', 'Konut', 'Mersin', '', null, '2016/01/eaka_2.jpg'],
+  ['AMM-00006', 'Yıldızkent Konutları', '', 'Konut', 'Tarsus, Mersin', '', null, '2016/01/yild_06.jpg'],
+  ['AMM-00007', 'Yağlıcı Plaza', '', 'Ticari', 'Seyhan, Adana', '', null, '2015/11/Yağlıcı-plaza-5.jpg'],
+].map(([id, title, years, type, location, client, area, photo]) => ({
   id, title, years, type, location, client, area,
   city: location.split(', ').at(-1),
-  url: site + 'proje/' + slug + '/',
   image: site + 'wp-content/uploads/' + encodeURI(photo),
 }));
+
+const sampleProjects = picturedProjects.concat([
+  {
+    "id": "AMM-00001",
+    "title": "Tip Konut prj yarışması 60 m2",
+    "years": "1985",
+    "type": "Konut",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00008",
+    "title": "Tip Konut prj yarışması 90 m2",
+    "years": "1985",
+    "type": "Konut",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00009",
+    "title": "Tip Konut prj yarışması sıra ev",
+    "years": "1985",
+    "type": "Konut",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00010",
+    "title": "İncipark Evleri",
+    "years": "2011",
+    "type": "Konut",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": 900.0,
+    "image": ""
+  },
+  {
+    "id": "AMM-00011",
+    "title": "Saklıkent Vilları",
+    "years": "2007",
+    "type": "Konut",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": 2000.0,
+    "image": ""
+  },
+  {
+    "id": "AMM-00012",
+    "title": "Hekimköy Villaları",
+    "years": "1992",
+    "type": "Konut",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": 17250.0,
+    "image": ""
+  },
+  {
+    "id": "AMM-00013",
+    "title": "Zeytinköy villaları",
+    "years": "2023",
+    "type": "Konut",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": 3600.0,
+    "image": ""
+  },
+  {
+    "id": "AMM-00014",
+    "title": "mevsim villaları",
+    "years": "2023",
+    "type": "Konut",
+    "location": "Mersin / Tarsus",
+    "city": "Mersin",
+    "client": "",
+    "area": 3000.0,
+    "image": ""
+  },
+  {
+    "id": "AMM-00015",
+    "title": "bayram inş villaları",
+    "years": "2023",
+    "type": "Konut",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": 5000.0,
+    "image": ""
+  },
+  {
+    "id": "AMM-00016",
+    "title": "Çukurova Rezidans",
+    "years": "2007",
+    "type": "Apartman",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00017",
+    "title": "E Konsept",
+    "years": "2017",
+    "type": "Apartman",
+    "location": "Mersin / Yenişehir",
+    "city": "Mersin",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00018",
+    "title": "TMT Parklife",
+    "years": "2009",
+    "type": "Apartman",
+    "location": "Adana / Seyhan",
+    "city": "Adana",
+    "client": "",
+    "area": 12000,
+    "image": ""
+  },
+  {
+    "id": "AMM-00019",
+    "title": "The Moon",
+    "years": "2014",
+    "type": "Apartman",
+    "location": "Adana / Seyhan",
+    "city": "Adana",
+    "client": "",
+    "area": 25500,
+    "image": ""
+  },
+  {
+    "id": "AMM-00020",
+    "title": "TMT Parklife Suit",
+    "years": "2010",
+    "type": "Apartman",
+    "location": "Adana / Seyhan",
+    "city": "Adana",
+    "client": "",
+    "area": 9000,
+    "image": ""
+  },
+  {
+    "id": "AMM-00021",
+    "title": "Safir Rezidans",
+    "years": "2012",
+    "type": "Apartman",
+    "location": "Mersin / Tarsus",
+    "city": "Mersin",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00022",
+    "title": "Lara Konsept",
+    "years": "2012",
+    "type": "Apartman",
+    "location": "Mersin / Yenişehir",
+    "city": "Mersin",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00023",
+    "title": "Medlife City",
+    "years": "2014",
+    "type": "Apartman",
+    "location": "Adana / Seyhan",
+    "city": "Adana",
+    "client": "",
+    "area": 16400,
+    "image": ""
+  },
+  {
+    "id": "AMM-00024",
+    "title": "Eserkent",
+    "years": "2007",
+    "type": "Apartman",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00025",
+    "title": "Platinkent",
+    "years": "2005",
+    "type": "Apartman",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00026",
+    "title": "Ünal Park Evleri 1",
+    "years": "2016",
+    "type": "Apartman",
+    "location": "Hatay / Payas",
+    "city": "Hatay",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00027",
+    "title": "Senfoni Ses",
+    "years": "2021",
+    "type": "Apartman",
+    "location": "Mersin / Yenişehir",
+    "city": "Mersin",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00028",
+    "title": "Solaris",
+    "years": "2024",
+    "type": "Apartman",
+    "location": "Mersin / Yenişehir",
+    "city": "Mersin",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00029",
+    "title": "osmaniye toplu konut",
+    "years": "2017",
+    "type": "Apartman",
+    "location": "Osmaniye",
+    "city": "Osmaniye",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00030",
+    "title": "Novita İş Merkezi",
+    "years": "2012",
+    "type": "Ofis",
+    "location": "Mersin / Yenişehir",
+    "city": "Mersin",
+    "client": "",
+    "area": "21.000 m2",
+    "image": ""
+  },
+  {
+    "id": "AMM-00031",
+    "title": "Motiva İş Merkezi",
+    "years": "2009",
+    "type": "Ofis",
+    "location": "Mersin / Yenişehir",
+    "city": "Mersin",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00032",
+    "title": "adana ticaret borsası",
+    "years": "2018",
+    "type": "Ofis",
+    "location": "Adana / Yüreğir",
+    "city": "Adana",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00033",
+    "title": "Çukurova Kız Yurdu",
+    "years": "2006",
+    "type": "Egitim",
+    "location": "Adana / Çukurova",
+    "city": "Adana",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00034",
+    "title": "Leyla Kürk Kütüphanesi",
+    "years": "2024",
+    "type": "Egitim",
+    "location": "Mersin / Yenişehir",
+    "city": "Mersin",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00035",
+    "title": "AOSB Kreş",
+    "years": "2023",
+    "type": "Egitim",
+    "location": "Adana / AOSB",
+    "city": "Adana",
+    "client": "",
+    "area": null,
+    "image": ""
+  },
+  {
+    "id": "AMM-00036",
+    "title": "Özteknik Enerji (sera elektromarket)",
+    "years": "2006",
+    "type": "Sanayi",
+    "location": "Adana / AOSB",
+    "city": "Adana",
+    "client": "",
+    "area": null,
+    "image": ""
+  }
+]);

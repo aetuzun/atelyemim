@@ -9,21 +9,29 @@
 <script src="archive.js" defer></script>
 </head>
 <body>
-<header class="masthead"><a href="https://www.atelyemimmimarlik.com/">Atelye Mim <span>Mimarlık</span></a><span>Adana, Türkiye</span></header>
+<header class="masthead">
+  <a class="brand" href="./">Atelye Mim Mimarlık</a>
+  <div class="view-switch" role="group" aria-label="Görünüm">
+    <button id="list" aria-pressed="true">Liste</button>
+    <button id="gallery" aria-pressed="false">Görseller</button>
+  </div>
+</header>
 <main>
 <h1>Proje Arşivi</h1>
 <section class="archive" aria-label="Projeler">
 <div class="controls">
-<label>Proje ara<input id="search" type="search" placeholder="Proje adı, konum veya kod"></label>
-<label>Tipoloji<select id="type"><option value="">Tümü</option></select></label>
-<label>Konum<select id="city"><option value="">Tümü</option></select></label>
-<label>Sıralama<select id="order"><option value="desc">Yeniden eskiye</option><option value="asc">Eskiden yeniye</option><option value="name">Proje adına göre</option></select></label>
+  <label>Tipoloji<select id="type"><option value="">Tümü</option></select></label>
+  <label>Konum<select id="city"><option value="">Tümü</option></select></label>
+  <label class="search">Proje ara<input id="search" type="search" placeholder="Ad, konum veya kod"></label>
 </div>
-<div class="viewbar"><p id="count" aria-live="polite"></p><div role="group" aria-label="Görünüm"><button id="list" aria-pressed="true">Liste</button><button id="gallery" aria-pressed="false">Görseller</button></div></div>
+<p id="count" aria-live="polite"></p>
 <div id="results"></div>
 <noscript>Proje arşivini görüntülemek için JavaScript’i etkinleştirin.</noscript>
 </section>
 </main>
-<footer><span>Atelye Mim Mimarlık</span><span>Proje Arşivi</span></footer>
+<dialog id="project-dialog" aria-labelledby="project-heading">
+  <form method="dialog"><button>Kapat</button></form>
+  <div id="project-details"></div>
+</dialog>
 </body>
 </html>
