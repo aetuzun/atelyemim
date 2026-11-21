@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Proje Arşivi · Atelye Mim Mimarlık</title>
-<link rel="stylesheet" href="style.css">
-<script src="sample.js" defer></script>
-<script src="archive.js" defer></script>
+<link rel="stylesheet" href="style.css?v=2">
+<script src="sample.js?v=2" defer></script>
+<script src="archive.js?v=2" defer></script>
 </head>
 <body>
 <header class="masthead">
@@ -20,9 +20,15 @@
 <h1>Proje Arşivi</h1>
 <section class="archive" aria-label="Projeler">
 <div class="controls">
-  <label>Tipoloji<select id="type"><option value="">Tümü</option></select></label>
-  <label>Konum<select id="city"><option value="">Tümü</option></select></label>
-  <label class="search">Proje ara<input id="search" type="search" placeholder="Ad, konum veya kod"></label>
+  <select id="type" aria-label="Tipoloji"><option value="">Tipoloji</option></select>
+  <select id="city" aria-label="Konum"><option value="">Konum</option></select>
+  <select id="mobile-sort" aria-label="Sıralama">
+    <option value="number:asc">No ↑</option><option value="number:desc">No ↓</option>
+    <option value="years:asc">Yıl ↑</option><option value="years:desc">Yıl ↓</option>
+    <option value="title:asc">Proje ↑</option><option value="title:desc">Proje ↓</option>
+    <option value="type:asc">Tipoloji ↑</option><option value="type:desc">Tipoloji ↓</option>
+  </select>
+  <input class="search" id="search" aria-label="Proje ara" type="search" placeholder="Proje ara">
 </div>
 <p id="count" aria-live="polite"></p>
 <div id="results"></div>
